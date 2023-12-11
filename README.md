@@ -1,7 +1,9 @@
 # Документация API
 
 ## Авторизация
-`/api/client/v2/auth/email`
+<details>
+
+<summary>/api/client/v2/auth/email</summary>
 
 Request json:
 Body:
@@ -75,3 +77,4 @@ Body:
     "warnings": null
 }
 ```
+</details>
