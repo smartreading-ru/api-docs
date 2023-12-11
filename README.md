@@ -1,13 +1,24 @@
 # Документация API
+v1.0 2023-12-11 volcan0
+
+Существует ряд методов для регистрации и авторизации пользователей не требующих токена авторизации.
+Все отсальные методы требуют Bearer Token в заголовке запроса.
 
 ## Авторизация
 <details>
 
-<summary>/api/client/v2/auth/email</summary>
+<summary>
+	Авторизация по Email /api/client/v2/auth/email
+</summary>
 
-Request json:
-Body:
+### Получение токена доступа по email пользователя.
+
 ```
+/api/client/v2/auth/email
+```
+
+Request body json:
+```json
 {
 	"data": {
 		"email": "my@email.com",
@@ -29,7 +40,7 @@ Body:
 ```
 
 200 OK Response json:
-```
+```json
 {
     "data": {
         "id": 476130,
@@ -37,7 +48,7 @@ Body:
         "email": "my@email.com",
         "social_id": null,
         "type": "b2c",
-        "token": "eyJ0eXAiOiJKV1QiLCJ1bGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLnNtYXJ0cmVhZGluZy5ydS9hcGkvY2xpZW50L3YyL2F1dGgvZW1haWwiLCJpYXQiOjE3MDIzMjY1MjQsImV4cCI6MTcwNDE0MDkyNCwibmJmIjoxNzAyMzI2NTI0LCJqdGkiOiIwT0tEb1RnSnZxaVR4dDdJIiwic3ViIjo0NzYxMzAsInBydiI6ImM1ZTExMmFkNGMxMmYwMzRjY2EwNWY4ZTZmNDgyZTIwNDAyMTZlNWYifQ.niVEk8ymg-fHK7F8y7cCj6g-RWNFlNB9JscNr2oDnis",
+        "token": "long string token here",
         "user_data_update_channel": "my_email.com",
         "summaries_update_channels": [
             "summary_update"
@@ -64,7 +75,7 @@ Body:
 ```
 
 200 Error Response json:
-```
+```json
 {
     "data": null,
     "errors": [
