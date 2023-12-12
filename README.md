@@ -548,7 +548,6 @@ Request body json:
                 "title": "Инновации",
                 "children": null
               }
-              }
             ]
           }
         ]
