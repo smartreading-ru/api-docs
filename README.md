@@ -433,3 +433,50 @@ Request body json:
 ````
 
 </details>
+
+## Восстановление доступа
+
+<details>
+<summary>
+Восстановление пароля по Email /api/client/v2/password/reset/email
+</summary>
+
+### Запрос ссылки на сброс пароля для определенного Email
+Ответ со ссылкой на сброс приходит на запрошенный Email.
+
+````
+POST /api/client/v2/password/reset/email
+````
+
+Request body json:
+````json
+{
+	"data": {
+		"email": ""
+    }
+}
+````
+
+200 OK Response json:
+````json
+{
+    "data": null,
+    "errors": null,
+    "warnings": null
+}
+````
+
+200 Error Response json: 
+````json
+{
+    "data": null,
+    "errors": [
+        {
+            "code": 2004,
+            "message": "Пользователь не найден."
+        }
+    ],
+    "warnings": null
+}
+````
+</details>
