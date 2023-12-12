@@ -362,73 +362,75 @@ Request body json:
 
 ````json
 {
-	"data": {
-		"email": "my email",
-		"name": "my name",
-		"password": "my password",
-        "apps_flyer": {
-          "idfa": "EE4D67BC-AA45-4B52-A7F5-F49EC455E41B",
-          "advertising_id": "1579866034725",
-          "uid": "1579866034725-3229704"  
-        }
-	},
-	"extend_data": {
-        "channel": "ios",
-		"os": "12.1.4",
-		"hardware": "iPhone9,3",
-		"api_version": "2.1",
-		"app_version": "v3.2.4"
-	}
+  "data": {
+    "email": "my email",
+    "name": "my name",
+    "password": "my password",
+    "apps_flyer": {
+      "idfa": "EE4D67BC-AA45-4B52-A7F5-F49EC455E41B",
+      "advertising_id": "1579866034725",
+      "uid": "1579866034725-3229704"
+    }
+  },
+  "extend_data": {
+    "channel": "ios",
+    "os": "12.1.4",
+    "hardware": "iPhone9,3",
+    "api_version": "2.1",
+    "app_version": "v3.2.4"
+  }
 }
 ````
 
 200 Response json:
+
 ````json
 {
-    "data": {
-        "id": 644228,
-        "name": "my name",
-        "email": "my email",
-        "social_id": null,
-        "type": "b2c",
-        "token": "my access token",
-        "user_data_update_channel": "my_email.com",
-        "summaries_update_channels": [
-            "summary_update"
-        ],
-        "subscription": {
-            "tariff_alias": "trial",
-            "tariff_name": "Триал (Пробный)",
-            "end_date": "2023-12-19T17:30:49+03:00",
-            "is_trial": true,
-            "had_trial": true,
-            "is_recurrent": false,
-            "is_purchasing_allowed": true,
-            "current_time": "2023-12-12T17:30:49+03:00"
-        },
-        "interface_data": {
-            "blog": {
-                "web_site_url": "https://smartreading.ru/blog"
-            }
-        }
+  "data": {
+    "id": 644228,
+    "name": "my name",
+    "email": "my email",
+    "social_id": null,
+    "type": "b2c",
+    "token": "my access token",
+    "user_data_update_channel": "my_email.com",
+    "summaries_update_channels": [
+      "summary_update"
+    ],
+    "subscription": {
+      "tariff_alias": "trial",
+      "tariff_name": "Триал (Пробный)",
+      "end_date": "2023-12-19T17:30:49+03:00",
+      "is_trial": true,
+      "had_trial": true,
+      "is_recurrent": false,
+      "is_purchasing_allowed": true,
+      "current_time": "2023-12-12T17:30:49+03:00"
     },
-    "errors": null,
-    "warnings": null
+    "interface_data": {
+      "blog": {
+        "web_site_url": "https://smartreading.ru/blog"
+      }
+    }
+  },
+  "errors": null,
+  "warnings": null
 }
 ````
 
 200 Error response:
+
 ````json
 {
-    "data": null,
-    "errors": [
-        {
-            "code": 2001,
-            "message": "Пользователь с таким email уже существует",
-            "details": "my email"
-        }
-    ],
-    "warnings": null
+  "data": null,
+  "errors": [
+    {
+      "code": 2001,
+      "message": "Пользователь с таким email уже существует",
+      "details": "my email"
+    }
+  ],
+  "warnings": null
 }
 ````
 
@@ -442,6 +444,7 @@ Request body json:
 </summary>
 
 ### Запрос ссылки на сброс пароля для определенного Email
+
 Ответ со ссылкой на сброс приходит на запрошенный Email.
 
 ````
@@ -449,34 +452,111 @@ POST /api/client/v2/password/reset/email
 ````
 
 Request body json:
+
 ````json
 {
-	"data": {
-		"email": ""
-    }
+  "data": {
+    "email": ""
+  }
 }
 ````
 
 200 OK Response json:
+
 ````json
 {
-    "data": null,
-    "errors": null,
-    "warnings": null
+  "data": null,
+  "errors": null,
+  "warnings": null
 }
 ````
 
-200 Error Response json: 
+200 Error Response json:
+
 ````json
 {
-    "data": null,
-    "errors": [
-        {
-            "code": 2004,
-            "message": "Пользователь не найден."
-        }
-    ],
-    "warnings": null
+  "data": null,
+  "errors": [
+    {
+      "code": 2004,
+      "message": "Пользователь не найден."
+    }
+  ],
+  "warnings": null
 }
 ````
+
+</details>
+
+## Библиотека саммари
+
+<details>
+<summary>
+Получение списка категорий /api/client/v2/themes/get-list/v2
+</summary>
+
+### Возвращает список категорий
+
+````
+POST /api/client/v2/themes/get-list/v2
+````
+
+
+Request Headers:
+````
+Authorization: Bearer access_token
+````
+
+Request body json:
+````json
+{
+  "data": {
+    "channel": "android"
+  }
+}
+````
+
+200 Response json:
+
+````json
+ {
+  "data": {
+    "themes": [
+      {
+        "id": 1,
+        "title": "Бизнес",
+        "sub_title": "Все про бизнес",
+        "children": [
+          {
+            "id": 2,
+            "title": "Области бизнеса",
+            "sub_title": "Все о функциях бизнеса",
+            "children": [
+              {
+                "id": 3,
+                "title": "Маркетинг",
+                "children": null
+              },
+              {
+                "id": 4,
+                "title": "Продажи",
+                "children": null
+              },
+              {
+                "id": 5,
+                "title": "Инновации",
+                "children": null
+              }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "errors": null,
+  "warnings": null
+}
+````
+
 </details>
