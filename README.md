@@ -2,8 +2,8 @@
 
 v1.0 2023-12-11 volcan0
 
-Существует ряд методов для регистрации и авторизации пользователей не требующих токена авторизации.
-Метод регистрации требует партнерский ключ доступа к API.
+Существует ряд методов для регистрации и авторизации пользователей не требующих токена авторизации.<br>
+Метод регистрации требует партнерский ключ доступа к API.<br>
 Все остальные методы требуют Bearer Token в заголовке запроса.
 
 ## Авторизация
@@ -99,7 +99,7 @@ Request body json:
 
 <details>
 <summary>
-	Авторизация по VK /api/client/v2/social/login/vk
+	Авторизация через VK /api/client/v2/social/login/vk
 </summary>
 
 ### Получение токена доступа по VK аккаунту пользователя.
@@ -177,6 +177,87 @@ Request body json:
 ```
 
 </details>
+
+<details>
+<summary>
+	Авторизация через Google /api/client/v2/social/login/google
+</summary>
+
+### Получение токена доступа через Google аккаунт пользователя.
+
+```
+POST /api/client/v2/social/login/google
+```
+
+Request body json:
+
+```json
+{
+  "data": {
+    "id_token": "токен"
+  }
+}
+```
+
+200 OK Response json:
+
+```json
+{
+  "data": {
+    "id": 476130,
+    "name": "user name",
+    "email": "my@email.com",
+    "social_id": null,
+    "type": "b2c",
+    "token": "long string token here",
+    "user_data_update_channel": "my_email.com",
+    "summaries_update_channels": [
+      "summary_update"
+    ],
+    "subscription": {
+      "tariff_alias": "6month",
+      "tariff_name": "Максимальный доступ",
+      "end_date": "2024-10-24T14:56:09+03:00",
+      "is_trial": false,
+      "had_trial": true,
+      "is_recurrent": true,
+      "is_purchasing_allowed": false,
+      "current_time": "2023-12-11T23:28:44+03:00"
+    },
+    "interface_data": {
+      "blog": {
+        "web_site_url": "https://smartreading.ru/blog"
+      }
+    }
+  },
+  "errors": null,
+  "warnings": null
+}
+``` 
+
+200 Error response json:
+
+```json
+{
+  "errors": [
+    {
+      "code": 2007,
+      "message": "Ошибка при авторизации в Google",
+      "details": null
+    },
+    {
+      "code": 2017,
+      "message": "Некорректный авторизационный токен",
+      "details": null
+    }
+  ],
+  "data": null,
+  "warnings": null
+}
+```
+
+</details>
+
 
 <details>
 <summary>
