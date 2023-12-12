@@ -501,13 +501,14 @@ Request body json:
 POST /api/client/v2/themes/get-list/v2
 ````
 
-
 Request Headers:
+
 ````
 Authorization: Bearer access_token
 ````
 
 Request body json:
+
 ````json
 {
   "data": {
@@ -556,6 +557,170 @@ Request body json:
   },
   "errors": null,
   "warnings": null
+}
+````
+
+</details>
+<details>
+<summary>Список рекомендаций /api/client/v2/recommendations/get-list</summary>
+
+### Возвращает полный набор рекомендаций для текущего пользователя
+
+Запрос возвращает большое кол-во данных, включая подробные данные для каждого саммари для каждой строки рекомендаций.<br>
+Устарело и будет замененно в будущем.
+
+````
+POST /api/client/v2/recommendations/get-list
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+Request body json:
+
+````json
+{
+  "data": {},
+  "extend_data": {
+    "channel": "ios",
+    "app_version": "4.8.0"
+  }
+}
+````
+
+200 OK Response json:
+
+````json
+{
+  "data": {
+    "themes": [
+      {
+        "theme": {
+          "id": null,
+          "title": "Новинки"
+        },
+        "recommendations": [
+          {
+            "summary_id": 1068,
+            "title": "Психология денег. Вечные уроки богатства, жадности и счастья",
+            "title_en": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+            "authors": "Морган Хаузел",
+            "authors_en": "Morgan Housel",
+            "audio": {
+              "duration_ms": 1818000
+            },
+            "themes": [
+              1,
+              2,
+              3
+            ],
+            "themes_v2": [
+              {
+                "id": 48,
+                "depth_level": 1,
+                "weight": 9
+              },
+              {
+                "id": 49,
+                "depth_level": 2,
+                "weight": 9
+              }
+            ],
+            "similar_summaries": [
+              668,
+              451,
+              449,
+              304
+            ],
+            "sponsor": null,
+            "attributes": [
+              1,
+              3
+            ],
+            "current_time": "2023-12-12T20:36:11+03:00",
+            "is_has_infographics": false
+          }
+        ]
+      }
+    ],
+    "banners": [
+      {
+        "alias": "calendar_2024",
+        "image_url": "https://cdn.smartreading.ru/images/mobile/adv_banners/24_135654_banner.png",
+        "link_url": "https://www.ozon.ru/highlight/umnyy-kalendar-1226335/",
+        "place": "top",
+        "width": 320,
+        "height": 140,
+        "link_type": "url",
+        "screen_alias": null
+      }
+    ],
+    "meta": {
+      "attributes": [
+        {
+          "id": 1,
+          "title": "new"
+        },
+        {
+          "id": 2,
+          "title": "free"
+        },
+        {
+          "id": 3,
+          "title": "audio"
+        },
+        {
+          "id": 4,
+          "title": "recommend"
+        },
+        {
+          "id": 5,
+          "title": "first_time_ru"
+        },
+        {
+          "id": 6,
+          "title": "popular"
+        },
+        {
+          "id": 7,
+          "title": "coming_soon"
+        }
+      ],
+      "themes": [
+        {
+          "id": 1,
+          "title": "Саморазвитие"
+        },
+        {
+          "id": 2,
+          "title": "Бизнес"
+        },
+        {
+          "id": 3,
+          "title": "Деньги"
+        },
+        {
+          "id": 4,
+          "title": "Технологии"
+        },
+        {
+          "id": 5,
+          "title": "Общество"
+        },
+        {
+          "id": 6,
+          "title": "Семья"
+        },
+        {
+          "id": 7,
+          "title": "ЗОЖ"
+        }
+      ]
+    }
+  }
 }
 ````
 
