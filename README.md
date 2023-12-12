@@ -6,6 +6,17 @@ v1.0 2023-12-11 volcan0
 Метод регистрации требует партнерский ключ доступа к API.<br>
 Все остальные методы требуют Bearer Token в заголовке запроса.
 
+В запросах часто используются:
+````json
+"extend_data": {
+  "os": "12.1.4", // Версия операционной системы
+  "channel": "ios", // устройство пользователя. Может быть web,ios,android
+  "hardware": "iPhone9,3", // Версия устройства или браузера
+  "api_version": "2.1", // API устройства
+  "app_version": "v3.2.4" // Версия приложения
+}
+````
+
 ## Авторизация
 
 <details>
@@ -495,7 +506,7 @@ Request body json:
 Получение списка категорий /api/client/v2/themes/get-list/v2
 </summary>
 
-### Возвращает список категорий
+### Возвращает полный список тем саммари
 
 ````
 POST /api/client/v2/themes/get-list/v2
@@ -565,7 +576,8 @@ Request body json:
 
 ### Возвращает полный набор рекомендаций для текущего пользователя
 
-Запрос возвращает большое кол-во данных, включая подробные данные для каждого саммари для каждой строки рекомендаций.<br>
+Запрос возвращает большое кол-во данных, включая подробные данные для каждого саммари для каждой строки
+рекомендаций.<br>
 Устарело и будет замененно в будущем.
 
 ````
@@ -724,3 +736,182 @@ Request body json:
 ````
 
 </details>
+
+<details>
+<summary>Получение библиотеки /api/client/v2/summaries/get-list</summary>
+
+### Постраничное получение библиотеки саммари с фильтрами по темам
+
+````
+POST /api/client/v2/summaries/get-list
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+Request body json:
+
+````json
+{
+  "data": {
+    "is_load_full_lib": 0,
+    "language": "ru",
+    "page": 1,
+    "on_page": 1,
+    "themes": [
+      7,
+      3,
+      1,
+      4
+    ],
+    "full_themes": 1,
+    "channel": "android"
+  }
+}
+````
+
+Если указан **is_load_full_lib=1** , то **page,
+on_page, themes** игнорируются и передается полная библиотека.
+
+**page** - страница ответа<br>
+**on_page** - кол-во саммари на странице<br>
+**themes** - массив тем саммари, может быть пустым или отсутствовать<br>
+**full_themes** - к ответу прибавляется детализированный список тем саммари (аналог
+*/api/client/v2/themes/get-list/v2*)<br>
+
+200 Response json:
+
+````json
+{
+    "data": {
+        "summaries": [
+            {
+                "summary_id": 1,
+                "title": "Никогда не ешьте в одиночку и другие правила нетворкинга",
+                "title_en": "Never Eat Alone and Other Secrets to Success, One Relationships at a Time",
+                "authors": "Кейт Феррацци, Тал Рэз",
+                "authors_en": "Keith Ferrazzi, Tahl Raz",
+                "audio": {
+                    "duration_ms": 942000
+                },
+                "themes": [
+                    1,
+                    2
+                ],
+                "similar_summaries": [
+                    383,
+                    97,
+                    91,
+                    39,
+                    20
+                ],
+                "sponsor": null,
+                "slug": "nikogda-ne-eshte-v-odinochku-i-drugie-pravila-netvorkinga",
+                "attributes": [
+                    3
+                ],
+                "is_has_infographics": true
+            }
+        ],
+        "meta": {
+            "attributes": [
+                {
+                    "id": 1,
+                    "title": "new"
+                },
+                {
+                    "id": 2,
+                    "title": "free"
+                },
+                {
+                    "id": 3,
+                    "title": "audio"
+                },
+                {
+                    "id": 4,
+                    "title": "recommend"
+                },
+                {
+                    "id": 5,
+                    "title": "first_time_ru"
+                },
+                {
+                    "id": 6,
+                    "title": "popular"
+                },
+                {
+                    "id": 7,
+                    "title": "coming_soon"
+                }
+            ],
+            "themes": [
+                {
+                    "id": 1,
+                    "title": "Саморазвитие"
+                },
+                {
+                    "id": 2,
+                    "title": "Бизнес"
+                },
+                {
+                    "id": 3,
+                    "title": "Деньги"
+                },
+                {
+                    "id": 4,
+                    "title": "Технологии"
+                },
+                {
+                    "id": 5,
+                    "title": "Общество"
+                },
+                {
+                    "id": 6,
+                    "title": "Семья"
+                },
+                {
+                    "id": 7,
+                    "title": "ЗОЖ"
+                }
+            ]
+        }
+    }
+}
+````
+
+</details>
+
+
+
+
+<details>
+<summary></summary>
+
+###
+
+````
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+Request body json:
+
+````json
+````
+
+200 Response json:
+
+````json
+````
+
+</details>
+
+
+2023 Smartreading.ru 
