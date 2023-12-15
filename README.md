@@ -1103,6 +1103,34 @@ Authorization: Bearer access_token
 </details>
 
 <details>
+<summary>Единый метод получения данных о саммари /api/client/v2/file/get</summary>
+
+###
+
+````
+POST /api/client/v2/file/get
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+Request body form-data:
+
+````form-data
+data[summary_id]: {{ book_id }}
+data[type]: [audio|cover|epub|intro]
+````
+
+200 Response raw body:
+
+
+</details>
+
+
+<details>
 <summary></summary>
 
 ###
