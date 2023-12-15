@@ -7,13 +7,14 @@ v1.0 2023-12-11 volcan0
 Все остальные методы требуют Bearer Token в заголовке запроса.
 
 В запросах часто используются:
+
 ````json
 "extend_data": {
-  "os": "12.1.4", // Версия операционной системы
-  "channel": "ios", // устройство пользователя. Может быть web,ios,android
-  "hardware": "iPhone9,3", // Версия устройства или браузера
-  "api_version": "2.1", // API устройства
-  "app_version": "v3.2.4" // Версия приложения
+"os": "12.1.4", // Версия операционной системы
+"channel": "ios", // устройство пользователя. Может быть web,ios,android
+"hardware": "iPhone9,3", // Версия устройства или браузера
+"api_version": "2.1", // API устройства
+"app_version": "v3.2.4" // Версия приложения
 }
 ````
 
@@ -572,7 +573,7 @@ Request body json:
 
 </details>
 <details>
-<summary>Список рекомендаций /api/client/v2/recommendations/get-list</summary>
+<summary>Получение списка рекомендаций /api/client/v2/recommendations/get-list</summary>
 
 ### Возвращает полный набор рекомендаций для текущего пользователя
 
@@ -786,104 +787,551 @@ on_page, themes** игнорируются и передается полная 
 
 ````json
 {
-    "data": {
-        "summaries": [
-            {
-                "summary_id": 1,
-                "title": "Никогда не ешьте в одиночку и другие правила нетворкинга",
-                "title_en": "Never Eat Alone and Other Secrets to Success, One Relationships at a Time",
-                "authors": "Кейт Феррацци, Тал Рэз",
-                "authors_en": "Keith Ferrazzi, Tahl Raz",
-                "audio": {
-                    "duration_ms": 942000
-                },
-                "themes": [
-                    1,
-                    2
-                ],
-                "similar_summaries": [
-                    383,
-                    97,
-                    91,
-                    39,
-                    20
-                ],
-                "sponsor": null,
-                "slug": "nikogda-ne-eshte-v-odinochku-i-drugie-pravila-netvorkinga",
-                "attributes": [
-                    3
-                ],
-                "is_has_infographics": true
-            }
+  "data": {
+    "summaries": [
+      {
+        "summary_id": 1,
+        "title": "Никогда не ешьте в одиночку и другие правила нетворкинга",
+        "title_en": "Never Eat Alone and Other Secrets to Success, One Relationships at a Time",
+        "authors": "Кейт Феррацци, Тал Рэз",
+        "authors_en": "Keith Ferrazzi, Tahl Raz",
+        "audio": {
+          "duration_ms": 942000
+        },
+        "themes": [
+          1,
+          2
         ],
-        "meta": {
-            "attributes": [
-                {
-                    "id": 1,
-                    "title": "new"
-                },
-                {
-                    "id": 2,
-                    "title": "free"
-                },
-                {
-                    "id": 3,
-                    "title": "audio"
-                },
-                {
-                    "id": 4,
-                    "title": "recommend"
-                },
-                {
-                    "id": 5,
-                    "title": "first_time_ru"
-                },
-                {
-                    "id": 6,
-                    "title": "popular"
-                },
-                {
-                    "id": 7,
-                    "title": "coming_soon"
-                }
-            ],
-            "themes": [
-                {
-                    "id": 1,
-                    "title": "Саморазвитие"
-                },
-                {
-                    "id": 2,
-                    "title": "Бизнес"
-                },
-                {
-                    "id": 3,
-                    "title": "Деньги"
-                },
-                {
-                    "id": 4,
-                    "title": "Технологии"
-                },
-                {
-                    "id": 5,
-                    "title": "Общество"
-                },
-                {
-                    "id": 6,
-                    "title": "Семья"
-                },
-                {
-                    "id": 7,
-                    "title": "ЗОЖ"
-                }
-            ]
+        "similar_summaries": [
+          383,
+          97,
+          91,
+          39,
+          20
+        ],
+        "sponsor": null,
+        "slug": "nikogda-ne-eshte-v-odinochku-i-drugie-pravila-netvorkinga",
+        "attributes": [
+          3
+        ],
+        "is_has_infographics": true
+      }
+    ],
+    "meta": {
+      "attributes": [
+        {
+          "id": 1,
+          "title": "new"
+        },
+        {
+          "id": 2,
+          "title": "free"
+        },
+        {
+          "id": 3,
+          "title": "audio"
+        },
+        {
+          "id": 4,
+          "title": "recommend"
+        },
+        {
+          "id": 5,
+          "title": "first_time_ru"
+        },
+        {
+          "id": 6,
+          "title": "popular"
+        },
+        {
+          "id": 7,
+          "title": "coming_soon"
         }
+      ],
+      "themes": [
+        {
+          "id": 1,
+          "title": "Саморазвитие"
+        },
+        {
+          "id": 2,
+          "title": "Бизнес"
+        },
+        {
+          "id": 3,
+          "title": "Деньги"
+        },
+        {
+          "id": 4,
+          "title": "Технологии"
+        },
+        {
+          "id": 5,
+          "title": "Общество"
+        },
+        {
+          "id": 6,
+          "title": "Семья"
+        },
+        {
+          "id": 7,
+          "title": "ЗОЖ"
+        }
+      ]
     }
+  }
 }
 ````
 
 </details>
 
+
+
+<details>
+<summary>Получение детализации саммари /api/client/v2/summary/get-full-data/v2</summary>
+
+### Возвращает всю информацию о запрошенном саммари по ID
+
+````
+POST /api/client/v2/summary/get-full-data/v2
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+Request body json:
+
+````json
+{
+  "data": {
+    "summary_id": 41
+  }
+}
+````
+
+200 Response json:
+
+````json
+{
+  "data": {
+    "summary_id": 41,
+    "title": "Отдел продаж под ключ",
+    "title_en": null,
+    "authors": "Сергей Капустин, Дмитрий Крутов",
+    "authors_en": null,
+    "audio": {
+      "duration_ms": 1764467
+    },
+    "themes": [
+      2
+    ],
+    "themes_v2": [
+      {
+        "id": 1,
+        "depth_level": 1,
+        "weight": 9
+      },
+      {
+        "id": 2,
+        "depth_level": 2,
+        "weight": 9
+      },
+      {
+        "id": 4,
+        "depth_level": 3,
+        "weight": 9
+      },
+      {
+        "id": 9,
+        "depth_level": 3,
+        "weight": 3
+      },
+      {
+        "id": 21,
+        "depth_level": 2,
+        "weight": 9
+      },
+      {
+        "id": 24,
+        "depth_level": 3,
+        "weight": 9
+      },
+      {
+        "id": 28,
+        "depth_level": 2,
+        "weight": 9
+      },
+      {
+        "id": 29,
+        "depth_level": 3,
+        "weight": 3
+      },
+      {
+        "id": 30,
+        "depth_level": 3,
+        "weight": 3
+      }
+    ],
+    "similar_summaries": [
+      447,
+      370,
+      43,
+      32,
+      5
+    ],
+    "sponsor": null,
+    "attributes": [
+      3,
+      4,
+      4
+    ],
+    "testing": {
+      "id": 334,
+      "title": null,
+      "max_score": 0,
+      "score_to_pass": 0,
+      "questions": [
+        {
+          "id": 56193,
+          "title": "Отметьте правильную последовательность «воронки продаж» по мере сужения…",
+          "answers": [
+            {
+              "id": 223769,
+              "title": "встречи, звонки, сделки",
+              "is_correct": false
+            },
+            {
+              "id": 223770,
+              "title": "сделки, встречи, звонки",
+              "is_correct": false
+            },
+            {
+              "id": 223771,
+              "title": "встречи, сделки, звонки",
+              "is_correct": false
+            },
+            {
+              "id": 223772,
+              "title": "звонки, встречи, сделки",
+              "is_correct": true
+            }
+          ]
+        },
+        {
+          "id": 56194,
+          "title": "Анализ воронки продаж позволяет сделать следующие действия:",
+          "answers": [
+            {
+              "id": 223773,
+              "title": "понять, на каком этапе происходит основной отсев потенциальных клиентов",
+              "is_correct": false
+            },
+            {
+              "id": 223774,
+              "title": "сравнить, какие виды работ получаются лучше у каждого из продавцов (при сравнении индивидуальных воронок)",
+              "is_correct": false
+            },
+            {
+              "id": 223775,
+              "title": "сравнить эффективность процесса в различные периоды времени",
+              "is_correct": false
+            },
+            {
+              "id": 223776,
+              "title": "выяснить у потенциальных клиентов причины их отсева",
+              "is_correct": true
+            }
+          ]
+        },
+        {
+          "id": 56195,
+          "title": "Если 1 рубль инвестиций в рекламу приносит 1 рубль дохода, то…",
+          "answers": [
+            {
+              "id": 223777,
+              "title": "рекламу стоит оставлять",
+              "is_correct": true
+            },
+            {
+              "id": 223778,
+              "title": "рекламу нужно убирать",
+              "is_correct": false
+            },
+            {
+              "id": 223779,
+              "title": "рекламу нужно раскрасить",
+              "is_correct": false
+            },
+            {
+              "id": 223780,
+              "title": "рекламу можно скорректировать",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56196,
+          "title": "План продаж. Отметьте понятие, не относящееся к нему:",
+          "answers": [
+            {
+              "id": 223781,
+              "title": "сверху вниз",
+              "is_correct": false
+            },
+            {
+              "id": 223782,
+              "title": "s.m.a.r.t",
+              "is_correct": true
+            },
+            {
+              "id": 223783,
+              "title": "основной продукт (back-end)",
+              "is_correct": false
+            },
+            {
+              "id": 223784,
+              "title": "«фикс»",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56197,
+          "title": "Ниже приведены описания элементов альтернативной организации отдела продаж. Отметьте лишнее:",
+          "answers": [
+            {
+              "id": 223785,
+              "title": "выявление «лидов»",
+              "is_correct": false
+            },
+            {
+              "id": 223786,
+              "title": "управление отношениями с клиентами",
+              "is_correct": false
+            },
+            {
+              "id": 223787,
+              "title": "анализ потребностей",
+              "is_correct": true
+            },
+            {
+              "id": 223788,
+              "title": "конверсия «лидов»",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56198,
+          "title": "Работа с возражениями…",
+          "answers": [
+            {
+              "id": 223789,
+              "title": "это закрытие типичных возражений",
+              "is_correct": true
+            },
+            {
+              "id": 223790,
+              "title": "это создание сценария бесконфликтных продаж",
+              "is_correct": false
+            },
+            {
+              "id": 223791,
+              "title": "это создание конструктивного конфликта на переговорах",
+              "is_correct": false
+            },
+            {
+              "id": 223792,
+              "title": "это преодоление возражений путём повтора основных элементов вашего предложения",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56199,
+          "title": "Что из нижеперечисленного не относится к параметрам БНАЦ?",
+          "answers": [
+            {
+              "id": 223793,
+              "title": "финансовый рекорд",
+              "is_correct": false
+            },
+            {
+              "id": 223794,
+              "title": "максимально возможное вознаграждение",
+              "is_correct": true
+            },
+            {
+              "id": 223795,
+              "title": "сложно достижимый результат",
+              "is_correct": false
+            },
+            {
+              "id": 223796,
+              "title": "Последовательность перевыполнения плана, приводящая к качественным изменениям",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56200,
+          "title": "Двухшаговая модель продаж предполагает следующий порядок действий:",
+          "answers": [
+            {
+              "id": 223797,
+              "title": "демонстрируете товар, затем называете его цену",
+              "is_correct": false
+            },
+            {
+              "id": 223798,
+              "title": "описываете основной товар, затем обсуждаете дополнительные варианты и опции",
+              "is_correct": false
+            },
+            {
+              "id": 223799,
+              "title": "делаете клиенту предложение, позволяющее заинтересовать его, а потом предлагаете основной товар, приносящий вам прибыль",
+              "is_correct": true
+            },
+            {
+              "id": 223800,
+              "title": "вы обсуждаете с клиентом его потребности, потом предлагаете для них решение",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56201,
+          "title": "Работа с возражениями предполагает поиск убедительных контраргументов по всем вопросам, кроме…",
+          "answers": [
+            {
+              "id": 223801,
+              "title": "цены предложения",
+              "is_correct": false
+            },
+            {
+              "id": 223802,
+              "title": "условий поставок",
+              "is_correct": false
+            },
+            {
+              "id": 223803,
+              "title": "качества и доставки",
+              "is_correct": false
+            },
+            {
+              "id": 223804,
+              "title": "каждый из этих факторов может быть предметом обсуждения",
+              "is_correct": true
+            }
+          ]
+        },
+        {
+          "id": 56202,
+          "title": "Какое из приведенных ниже положений верно?",
+          "answers": [
+            {
+              "id": 223805,
+              "title": "Сценарий состоит из универсальных фраз, применимых в любой ситуации",
+              "is_correct": false
+            },
+            {
+              "id": 223806,
+              "title": "Сотрудники должны заниматься обзвоном клиентов вне зависимости от своего настроения",
+              "is_correct": false
+            },
+            {
+              "id": 223807,
+              "title": "Цель первой фразы в разговоре состоит в том, чтобы максимально быстро донести сообщение о вашем продукте или услуге",
+              "is_correct": false
+            },
+            {
+              "id": 223808,
+              "title": "Наиболее эффективны при общении простые фразы – не более 10 слов в предложении",
+              "is_correct": true
+            }
+          ]
+        },
+        {
+          "id": 56203,
+          "title": "Какое из описанных ниже действий относится к понятию «конверсия лидов»?",
+          "answers": [
+            {
+              "id": 223809,
+              "title": "Назначение встречи с клиентом",
+              "is_correct": false
+            },
+            {
+              "id": 223810,
+              "title": "Ведение работы с клиентами, уже работающими с компанией",
+              "is_correct": false
+            },
+            {
+              "id": 223811,
+              "title": "Проведение встречи с клиентом",
+              "is_correct": true
+            },
+            {
+              "id": 223812,
+              "title": "Общение с клиентом по вопросу неоплаченных им счетов",
+              "is_correct": false
+            }
+          ]
+        },
+        {
+          "id": 56204,
+          "title": "По каким параметрам правильнее всего сегментировать клиентов?",
+          "answers": [
+            {
+              "id": 223813,
+              "title": "Новые и постоянные",
+              "is_correct": false
+            },
+            {
+              "id": 223814,
+              "title": "Лояльные и нелояльные",
+              "is_correct": false
+            },
+            {
+              "id": 223815,
+              "title": "Прибыльные и неприбыльные",
+              "is_correct": false
+            },
+            {
+              "id": 223816,
+              "title": "Допустим каждый из вариантов, в зависимости от изучаемого при анализе вопроса",
+              "is_correct": true
+            }
+          ]
+        }
+      ]
+    },
+    "current_time": "2023-12-15T11:36:02+03:00",
+    "slug": "otdel-prodazh-pod-klyuch",
+    "is_has_infographics": false
+  }
+}
+````
+
+200 Error response:
+````json
+{
+    "errors": [
+        {
+            "code": 3004,
+            "message": "Саммари отсутсвует",
+            "details": 9141
+        }
+    ],
+    "data": null,
+    "warnings": null
+}
+````
+
+
+</details>
 
 
 
