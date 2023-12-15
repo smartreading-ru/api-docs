@@ -1103,25 +1103,6 @@ Authorization: Bearer access_token
 </details>
 
 <details>
-<summary>Получение EPUB файла саммари /api/client/v2/summary/{{ book_id }}/file/get/epub</summary>
-
-### Возвращает EPUB файл запрошенного саммари
-
-````
-GET /api/client/v2/summary/{{ book_id }}/file/get/epub
-````
-
-Request Headers:
-
-````
-Authorization: Bearer access_token
-````
-
-200 Response EPUB file.
-
-</details>
-
-<details>
 <summary></summary>
 
 ###
