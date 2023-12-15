@@ -1059,6 +1059,46 @@ Authorization: Bearer access_token
 </details>
 
 
+<details>
+<summary>Получение обложки саммари /api/client/v2/summary/{{ book_id }}/file/get/cover</summary>
+
+### Возвращает JPEG изображение обложки запрошенного саммари
+
+````
+GET /api/client/v2/summary/{{ book_id }}/file/get/cover
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+200 Response raw image.
+
+</details>
+
+
+
+
+<details>
+<summary>Получение EPUB файла саммари /api/client/v2/summary/{{ book_id }}/file/get/epub</summary>
+
+### Возвращает EPUB файл запрошенного саммари
+
+````
+GET /api/client/v2/summary/{{ book_id }}/file/get/epub
+````
+
+Request Headers:
+
+````
+Authorization: Bearer access_token
+````
+
+200 Response EPUB file.
+
+</details>
 
 
 <details>
